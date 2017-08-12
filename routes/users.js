@@ -26,7 +26,7 @@ router.post('/', function (req, res, next) {
             });
         } else {
             console.log(err);
-            res.render('users/new');
+            res.render('users/new', {title: "Sign Up"});
         }
     });
 });

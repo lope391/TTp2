@@ -79,7 +79,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3003;
 
 app.listen(port, function () {
     console.log("Server is Running on port: " + port);
