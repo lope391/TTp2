@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://use.fontawesome.com/b1942701c5.js"></script>
+</head>
+    <body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand">CPG<i class="fa fa-free-code-camp fa-lg" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/campgrounds">Campgrounds</a>
+                    </li>
+
+                    <li>
+                        <a href="/search">Search</a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <% if(!currentUser){ %>
+                        <li>
+                            <a href="/users/new">SignUp<i class="fa fa-user-plus" aria-hidden="true"></i></a>
+                        </li>
+
+                        <li>
+                            <a href="/users/login">LogIn<i class="fa fa-user" aria-hidden="true"></i></a>
+                        </li>
+                    <% } else { %>
+                        <li>
+                            <a href="#"><%= currentUser.username %></a>
+                        </li>
+                        <li>
+                            <a href="/users/logout">LogOut<i class="fa fa-user" aria-hidden="true"></i></a>
+                        </li>
+                    <% } %>
+
+                </ul>
+            </div>
+        </div>
+    </nav>

@@ -1,0 +1,25 @@
+<% include partials/header %>
+
+    <div class="container">
+        <div class="container">
+            <h1>Search Camps</h1>
+            <form action="/search" method="GET">
+                <input type="text" placeholder="search camps!" name="key">
+                <button class="btn btn-default">Search!</button>
+            </form>
+        </div>
+        <div class="container">
+            <% camps.forEach(function (camp) { %>
+            <div class="col-md-3 col-sm-6">
+
+                <div class="thumbnail">
+                    <img src="<%= camp.image %>">
+                    <h4 class="caption"><%= camp.name %></h4>
+                    <a class="btn btn-default" href="/campgrounds/<%= camp._id %>">More info</a>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+    </div>
+
+<% include partials/footer %>
