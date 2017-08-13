@@ -12,11 +12,12 @@ router.use(function (req, res, next) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-    Campground.find({'name': {$regex: ".*" + req.query.key + ".*", $options: "i" }}, function (err, camps) {
+    Campground.find({'name': {$regex: ".*" + req.query.key + ".*", $options: "i" }}).populate("image").exec( function (err,camps) {
         if(!err){
-            res.render("search", { title: 'Search', camps: camps})
+            console.log(camps);
+            res.render("search", { title: 'Search', camps: camps});
         } else {
-            console.log("ERROR ;" + err);
+            console.log("ERROR :" + err);
         }
     });
 

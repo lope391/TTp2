@@ -13,7 +13,7 @@
             <div class="col-md-3 col-sm-6">
 
                 <div class="thumbnail">
-                    <img src="<%= camp.image %>">
+                    <img src="/uploads/<%= camp.image.originalname %>" alt="Image Not Found">
                     <h4 class="caption"><%= camp.name %></h4>
                     <a class="btn btn-default" href="/campgrounds/<%= camp._id %>">More info</a>
                 </div>

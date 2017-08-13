@@ -5,9 +5,9 @@
             <h1 style="text-align: center">Create New Campground</h1>
 
             <div style="width: 30%; margin: 20px auto">
-                <form action="/campgrounds" method="POST">
+                <form action="/campgrounds" method="POST" enctype="multipart/form-data">
                     <input class="form-control" type="text" placeholder="name" name="campname">
-                    <input class="form-control" type="text" placeholder="imgurl" name="campimg">
+                    <input type="file" name="imgfile">
                     <textarea class="form-control" placeholder="Descripcion del Lugar" cols="30" rows="10" name="desc"></textarea>
                     <button class="btn btn-default btn-block">Send!</button>
                 </form>
