@@ -53,6 +53,7 @@ typings/
 
 #uploaded contents
 public/uploads/*
+!public/uploads/imgs.txt
 
 # Yarn Integrity file
 .yarn-integrity
