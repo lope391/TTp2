@@ -108,14 +108,57 @@ router.get('/:id', function (req, res, next) {
 });
 
 //Edit camps route
-router.put('/:id', ownsCamp, function (req, res, next) {
-    Campground.findByIdAndUpdate(req.params.id, req.body.campg, function (err, uptdCamp) {
-        if(!err){
-            res.redirect('/campgrounds/' + req.params.id);
-        } else {
-            console.log("ERROR :" + err);
-        }
-    });
+router.put('/:id', ownsCamp, upload.any(), function (req, res, next) {
+
+    var newCamp = req.body.campg;
+
+    if(req.files[0]) {
+
+        var imgfile = {
+            path: req.files[0].path,
+            originalname: req.files[0].originalname
+        };
+        console.log("IMGFILE:");
+        console.log(imgfile);
+
+
+        Image.create(imgfile, function (err, newimg) {
+            if(!err){
+                console.log("IMG CREATED CORRECTLY:");
+                console.log(newimg);
+                newCamp['image'] = newimg._id;
+                console.log("UPDATED CAMP INFO");
+                console.log(newCamp);
+
+                Campground.findByIdAndUpdate(req.params.id, newCamp, function (err, uptdCamp) {
+                    if(!err){
+                        console.log("CAMP UPDATED CORRETLY");
+                        console.log(uptdCamp);
+                        res.redirect('/campgrounds/' + req.params.id);
+                    } else {
+                        console.log("ERROR :" + err);
+                    }
+                });
+
+            } else {
+                console.log("ERROR :" + err);
+                res.redirect('back');
+            }
+        });
+
+    } else {
+
+        Campground.findByIdAndUpdate(req.params.id, newCamp, function (err, uptdCamp) {
+            if(!err){
+                console.log("CAMP UPDATED CORRETLY");
+                console.log(uptdCamp);
+                res.redirect('/campgrounds/' + req.params.id);
+            } else {
+                console.log("ERROR :" + err);
+            }
+        });
+    }
+
 });
 
 //Delete Camps route

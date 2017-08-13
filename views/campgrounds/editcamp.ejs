@@ -5,9 +5,9 @@
             <h1 style="text-align: center">Edit Camp: </h1>
 
             <div style="width: 30%; margin: 20px auto">
-                <form action="/campgrounds/<%= camp._id %>?_method=PUT" method="POST">
+                <form action="/campgrounds/<%= camp._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
                     <input class="form-control" type="text" value="<%= camp.name %>" name="campg[name]">
-                    <input class="form-control" type="text" value="<%= camp.image %>" name="campg[image]">
+                    <input type="file" name="imgfile">
                     <textarea class="form-control" cols="30" rows="10" name="campg[description]"><%= camp.description %></textarea>
                     <button class="btn btn-default btn-block">Send!</button>
                 </form>
