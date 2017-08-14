@@ -34,7 +34,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 //connect to mongoDB localhost
-var url = process.env.DATABASEURL || 'mongodb://localhost/topicos_p1';
+var url = process.env.DATABASEURL || 'mongodb://localhost/topicos_p2';
 mongoose.connect(url, {useMongoClient: true});
 //mongodb://lopec:eafit.2017@ds155727.mlab.com:55727/topicosp1 DB mLAB
 //mongodb://localhost/topicos_p1 DB Local
