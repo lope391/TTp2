@@ -92,4 +92,37 @@ Mejorar la disponibilidad de basa en implementar las 5 Rs, **Reliability**, **Re
 ##### 2.1.1.4 Tácticas
 
 ##### 2.1.1.5 Herramientas
+
+### 2.2 Rendimiento
+
+### 2.2.1 Marco de Referencia
+
+##### 2.2.1.1 Definición
+Cuando hablamos sobre el rendimiento estamos hablando sobre el tiempo y la abilidad del sistema de software para cumplir con los requerimientos del software. Cuando analizamos un producto de software no solo buscamos que se vea moderna si no que tambien se sienta moderna. La capacidad de responder de la forma mas rapida posible tiene un papel muy importante en esta situacion.
+
+De hecho la valocidad de respuesta es de las caracteristicas mas buscadas entre la calidad de un servicio web.Tanto el hardware como la optimizacion para que el producto corra de la mejor manera posible en cualquier dispositivo son vitales para el rendimiento de estos servicios.
+
+##### 2.2.1.2 Patrones
+
+##### 2.2.1.3 Escenarios
+
+##### 2.2.1.4 Tacticas
+
+##### 2.2.1.5 Herramientas
+
+### 2.2.2 Analisis
+
+### 2.2.3 Diseño
+
+##### 2.2.3.1 Vistas de Arquitectura
+
+##### 2.2.3.2 Patrones de Arquitectura
+
+##### 2.2.3.3 Best Practices
+
+##### 2.2.1.4 Tácticas
+
+##### 2.2.1.5 Herramientas
+ 
+
  
