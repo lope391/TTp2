@@ -94,10 +94,6 @@ Siguiendo el escenario anterior en este momento se tendría una aplicación que 
 
 ##### 2.1.3.3 Best Practices
 
-##### 2.1.1.4 Tácticas
-
-##### 2.1.1.5 Herramientas
-
 ### 2.2 Rendimiento
 
 ### 2.2.1 Marco de Referencia
@@ -109,9 +105,23 @@ De hecho la valocidad de respuesta es de las caracteristicas mas buscadas entre 
 
 ##### 2.2.1.2 Patrones
 
-##### 2.2.1.3 Escenarios
+##### 2.1.1.3 Escenarios
+Los diferentes escenaerios con los cuales se mide el rendimiento son: 
 
-##### 2.2.1.4 Tacticas
+* ** Latencia:** El tiempo en el que se demora desde la llegada del el estimulo hasta la respuesta del sistema.
+* ** Tiempo límite de procesamiento:** El tiempo maximo que tiene un proceso para ejecutar para optimizar el lineaje de tuberia.
+* ** Capacidad de carga:** Es la cantidad de operaciones que un sistema pueda ejecutar y terminar en intervalo de tiempo.
+* ** Jitter:** Intervalo de varianza permitida para la latencia.
+
+##### 2.1.1.4 Tacticas
+Existen dos principlaes tacticas para mejorar el rendimiento **Control de la Demanda de Recursos** y **Manejo de Recursos**
+* ** Control de la Demanda de Recursos:** 
+  * Manejo de la taza de discrezación: Implica una taza de la que se comprimen los datos pas pequeñas para obtener un espacio menor sacrificando fidelidad de los datos.
+  * Limite de respuesta de eventos: Consiste en designar un limite maximo en la cantidad de eventos que puede recibir un sistema.
+  * Priorizar Eventos: Consiste en designar diferentes niveles de prioridad dentro del sistema para tener un orden de los procesos mas importantes primero.
+  * Reducir sobrecarga: considerado como un tradeoff, delegar eventos para otros componentesbajando el estrés del sistema pero aumentando la latencias.
+  * Limitar tiempos de ejecución: Designar un tiempo limite que tiene un proceso para acabar,si se acaba el tiempo el evento se acaba. 
+
 
 ##### 2.2.1.5 Herramientas
 
@@ -125,9 +135,5 @@ De hecho la valocidad de respuesta es de las caracteristicas mas buscadas entre 
 
 ##### 2.2.3.3 Best Practices
 
-##### 2.2.1.4 Tácticas
-
-##### 2.2.1.5 Herramientas
- 
 
  
