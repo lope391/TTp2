@@ -108,14 +108,14 @@ De hecho la valocidad de respuesta es de las caracteristicas mas buscadas entre 
 ##### 2.1.1.3 Escenarios
 Los diferentes escenaerios con los cuales se mide el rendimiento son: 
 
-* ** Latencia:** El tiempo en el que se demora desde la llegada del el estimulo hasta la respuesta del sistema.
-* ** Tiempo límite de procesamiento:** El tiempo maximo que tiene un proceso para ejecutar para optimizar el lineaje de tuberia.
-* ** Capacidad de carga:** Es la cantidad de operaciones que un sistema pueda ejecutar y terminar en intervalo de tiempo.
-* ** Jitter:** Intervalo de varianza permitida para la latencia.
+* **Latencia:** El tiempo en el que se demora desde la llegada del el estimulo hasta la respuesta del sistema.
+* **Tiempo límite de procesamiento:** El tiempo maximo que tiene un proceso para ejecutar para optimizar el lineaje de tuberia.
+* **Capacidad de carga:** Es la cantidad de operaciones que un sistema pueda ejecutar y terminar en intervalo de tiempo.
+* **Jitter:** Intervalo de varianza permitida para la latencia.
 
 ##### 2.1.1.4 Tacticas
 Existen dos principlaes tacticas para mejorar el rendimiento **Control de la Demanda de Recursos** y **Manejo de Recursos**
-* ** Control de la Demanda de Recursos:** 
+* **Control de la Demanda de Recursos:** 
   * Manejo de la taza de discrezación: Implica una taza de la que se comprimen los datos pas pequeñas para obtener un espacio menor sacrificando fidelidad de los datos.
   * Limite de respuesta de eventos: Consiste en designar un limite maximo en la cantidad de eventos que puede recibir un sistema.
   * Priorizar Eventos: Consiste en designar diferentes niveles de prioridad dentro del sistema para tener un orden de los procesos mas importantes primero.
@@ -124,6 +124,14 @@ Existen dos principlaes tacticas para mejorar el rendimiento **Control de la Dem
 
 
 ##### 2.2.1.5 Herramientas
+* Caching 
+* Computación distribuida y paralela
+* Diseño “Ligthweight”
+* Solicitudes de datos asíncronas y bajo demanda
+* Diseño y pruebas basadas en el rendimiento
+* Diseño modular
+* Acceso omni-direccional
+
 
 ### 2.2.2 Analisis
 
