@@ -148,6 +148,9 @@ Siguiendo el escenario anterior en este momento se tendría una aplicación que 
 
 ##### 2.4.3 Patrones de Arquitectura
 
+* Model View Controller (MVC)
+* Arquitecture Orientada a Servicios (SOA)
+
 ##### 2.4.4 Best Practices
 
 
