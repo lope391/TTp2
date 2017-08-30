@@ -141,7 +141,10 @@ Siguiendo el escenario anterior en este momento se tendría una aplicación que 
 
 ##### 2.4.2 Vistas de Arquitectura
 
-![Alt text](campgrounds.png?raw=true)
+<p align="center">
+  <img width="460" height="300" src="campgrounds.png">
+</p>
+
 
 ##### 2.4.3 Patrones de Arquitectura
 
