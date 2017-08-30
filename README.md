@@ -66,20 +66,6 @@ Mejorar la disponibilidad de basa en implementar las 5 Rs, **Reliability**, **Re
   * **Reporting:** Para poder manejar los distintos estados de la aplicación hay que primero poder reconocer los diferentes estados de los servicios. Es necesario implementar algún tipo de control de monitoreo por parte de cada servicio para interactuar con el que le sea necesario. No es viable dejar que un servidor intente conectarse a una base de datos caída debe haber una pregunta o un latido relacionado a esta conexión para asegurar funcionamiento. 
   * **Redundancy:** Como ya se habló previamente, la redundancia se basa en incrementar el número de nodos que prestan el mismo servicio para que en cualquier momento siempre haya al menos un nodo que este activo prestando este servicio. El diseño n+1 es el que demuestra este concepto donde siempre se agrega un nodo más para mejorar la disponibilidad de la aplicación.
 
-#### 2.1.1.5 Herramientas
-  * Cliente principal que se conecta a un nodo primario y n nodos secundarios en el mismo nivel.
-  * Cliente principal que se conecta a un nodo primario y este se conecta a nodos secundarios.
-  * Componentes stateless.
-  * RAID de datos.
-  * Cluster de servidores con un balanceador de carga.
-  * Cluster de bases de datos.
-  * Virtualización de Datos.
-  * Cluster activo de aplicación y cluster secundario de recuperación de desastres.
-  * Bases de datos maestro/esclavo o maestro/maestro
-  * Content Delivery Networks.
-  * Sistemas de Usuario Final.
-  * Interfaces Externas e Internas
-
 ### 2.2 Rendimiento
 
 ### 2.2.1 Marco de Referencia
@@ -114,6 +100,13 @@ Existen dos principlaes tacticas para mejorar el rendimiento **Control de la Dem
   * Priorizar Eventos: Consiste en designar diferentes niveles de prioridad dentro del sistema para tener un orden de los procesos mas importantes primero.
   * Reducir sobrecarga: considerado como un tradeoff, delegar eventos para otros componentesbajando el estrés del sistema pero aumentando la latencias.
   * Limitar tiempos de ejecución: Designar un tiempo limite que tiene un proceso para acabar,si se acaba el tiempo el evento se acaba. 
+
+* ** Manejo de Recursos:**
+  * Aumentar Recursos: Subir la cantidad de recursos ayudan a reducir la carga de cada componente, esto dismuye la latencia. Esto puede incluir incrementar la cantidad de processadores, servidores o memoria adicional.
+  * Concurrencia: adicionar mas threads cuando existe la posibilidad de hacer varios procesos en paralelos ayuda a mejorar los tiempos de respuesta.
+  * Divicion de processadores: Ejecutar todos los procesos en un servidor puede crear cuellos de botella. Para mantener mejor estabilidad en tiempos de alta cantidad de request se recomiendad tener varios servidores para los processadores.
+  * Multiple copias de datos: Tener caches para almacenar los datos con mayor frecuencia de requirimiento disminuyer los tiempos de respuesta considerablemente.
+
 
 ### 2.3 Diseño
 
