@@ -109,10 +109,19 @@ Existen dos principlaes tacticas para mejorar el rendimiento **Control de la Dem
   * Divicion de processadores: Ejecutar todos los procesos en un servidor puede crear cuellos de botella. Para mantener mejor estabilidad en tiempos de alta cantidad de request se recomiendad tener varios servidores para los processadores.
   * Multiple copias de datos: Tener caches para almacenar los datos con mayor frecuencia de requirimiento disminuyer los tiempos de respuesta considerablemente.
 
+### 2.3 Analisis
 
-### 2.3 Diseño
+El proyecto debe tener varios niveles para asegurar la disponibilidad, pero se mantendrá un diseño simplificado para no crear demasiada complejidad como para que no pueda ser manejada. La idea es implementar servicios adicionales de disponibilidad tanto para la capa de servidor como para la capa de datos.  
 
-#### 2.3.1 Herramientas
+En primera instancia vamos a analizar el escenario donde una cantidad alta de usuarios entran a la aplicación en mismo instante. En este caso podemos pensar en que, si la aplicación llega a ser muy popular, la cantidad de requests al servidor en un instante de tiempo puede ser difícil de manejar. Si pensamos que somos una plataforma de mediano tamaño podríamos estimar 20000 usuarios registrados en nuestra plataforma. Siguiendo las proporciones normales, podríamos decir entonces que tenemos alrededor de 2000 usuarios activos lo que corresponde al 10% de los usuarios totales y finalmente a lo mejor tendríamos 200 usuarios concurrentes que representan el 1%. Así que nuestra aplicación debe estar diseñada para poder manejar 200 requests simultaneas. Si todo esto fuera directamente a una sola caja de servicios la cola sería demasiado larga y no podríamos garantizar que todo responda como debe. Para comenzar la solución a gran escala entonces sería tener más servidores para incrementar la capacidad de requests que se pueden manejar dividiendo la carga en las maquinas que sea necesario. Pero si este es el caso surge el problema de a que servidor se conecta cada usuario, para solucionar esto debemos hacer uso de un balanceador de carga. Este elemento que debe estar en su propia máquina virtual es al que llegan todos los usuarios, internamente el balanceador debe redireccionar a cada usuario a cualquier cliente. La redirección debe ser una tarea inteligente teniendo en cuenta que sepa el estado del cliente y no redirija a un servicio que este caído y también poder analizar la carga que tiene cada máquina para no enviar demasiados usuarios a una sola y dejar las otras sin carga, como su nombre lo dice debe balancearla.
+
+Cambiando de escenario, ahora pensemos que sucedería donde uno de estos clientes dejara de funcionar. Como ahora tendríamos más maquinas corriendo clientes lo ideal sería tener un mecanismo de failover donde los usuarios que estaban siendo atendidos por la maquina caída puedan pasar a ser atendidos por algunas de las otras máquinas de clientes. La cada cliente debe tener un mecanismo de failback para que si el error no fue crítico pueda reanudar funcionamiento y realojar a los usuarios y no sobrecargar el resto de nodos.
+
+Siguiendo el escenario anterior en este momento se tendría una aplicación que en varios clientes soporta múltiples usuarios, pero al necesitar hacer alguna consulta a la base de datos, no sería posible que esta estuviera localizada dentro del cliente porque no se tendría una consistencia de datos así que hay que sacarla a su propia maquina a la cual se conectarán todos los clientes. Siguiendo el mismo patrón la base de datos debe salir a una maquina separada que se conecte a todos los clientes, esto no cubre el caso de que sucede si la máquina de esta base de datos cae. En este caso necesitamos un esquema igual donde hay más de una maquina corriendo bases de datos conectada a todos los clientes. Aquí ya cumpliríamos nuestro cometido de dar un esquema de arquitectura para asegurar disponibilidad porque en los niveles de cliente y datos tenemos redundancia y replicación, pero hay que considerar que para que esto pueda funcionar debemos crear una partición de datos también porque hay que asegurar que la información que este en una máquina de datos caída siga pudiendo ser accedida. En este caso las bases de datos tienen que estar unidas y como es mongo la base de datos el esquema por default es una maquina principal que tiene dos secundarias a las cuales puede recaer donde la maquina principal falle, en todas se guarda la misma información al costo de que no se tiene tres veces la capacidad en vez solo una.
+
+### 2.4 Diseño
+
+#### 2.4.1 Herramientas
 * Caches
 * Jmeter
 * PostMan
@@ -129,23 +138,14 @@ Existen dos principlaes tacticas para mejorar el rendimiento **Control de la Dem
 * Sistemas de Usuario Final.
 * Interfaces Externas e Internas
 
-### 2.3.2 Analisis
 
-El proyecto debe tener varios niveles para asegurar la disponibilidad, pero se mantendrá un diseño simplificado para no crear demasiada complejidad como para que no pueda ser manejada. La idea es implementar servicios adicionales de disponibilidad tanto para la capa de servidor como para la capa de datos.  
+##### 2.4.2 Vistas de Arquitectura
 
-En primera instancia vamos a analizar el escenario donde una cantidad alta de usuarios entran a la aplicación en mismo instante. En este caso podemos pensar en que, si la aplicación llega a ser muy popular, la cantidad de requests al servidor en un instante de tiempo puede ser difícil de manejar. Si pensamos que somos una plataforma de mediano tamaño podríamos estimar 20000 usuarios registrados en nuestra plataforma. Siguiendo las proporciones normales, podríamos decir entonces que tenemos alrededor de 2000 usuarios activos lo que corresponde al 10% de los usuarios totales y finalmente a lo mejor tendríamos 200 usuarios concurrentes que representan el 1%. Así que nuestra aplicación debe estar diseñada para poder manejar 200 requests simultaneas. Si todo esto fuera directamente a una sola caja de servicios la cola sería demasiado larga y no podríamos garantizar que todo responda como debe. Para comenzar la solución a gran escala entonces sería tener más servidores para incrementar la capacidad de requests que se pueden manejar dividiendo la carga en las maquinas que sea necesario. Pero si este es el caso surge el problema de a que servidor se conecta cada usuario, para solucionar esto debemos hacer uso de un balanceador de carga. Este elemento que debe estar en su propia máquina virtual es al que llegan todos los usuarios, internamente el balanceador debe redireccionar a cada usuario a cualquier cliente. La redirección debe ser una tarea inteligente teniendo en cuenta que sepa el estado del cliente y no redirija a un servicio que este caído y también poder analizar la carga que tiene cada máquina para no enviar demasiados usuarios a una sola y dejar las otras sin carga, como su nombre lo dice debe balancearla.
+![Alt text](campgrounds.png?raw=true)
 
-Cambiando de escenario, ahora pensemos que sucedería donde uno de estos clientes dejara de funcionar. Como ahora tendríamos más maquinas corriendo clientes lo ideal sería tener un mecanismo de failover donde los usuarios que estaban siendo atendidos por la maquina caída puedan pasar a ser atendidos por algunas de las otras máquinas de clientes. La cada cliente debe tener un mecanismo de failback para que si el error no fue crítico pueda reanudar funcionamiento y realojar a los usuarios y no sobrecargar el resto de nodos.
+##### 2.4.3 Patrones de Arquitectura
 
-Siguiendo el escenario anterior en este momento se tendría una aplicación que en varios clientes soporta múltiples usuarios, pero al necesitar hacer alguna consulta a la base de datos, no sería posible que esta estuviera localizada dentro del cliente porque no se tendría una consistencia de datos así que hay que sacarla a su propia maquina a la cual se conectarán todos los clientes. Siguiendo el mismo patrón la base de datos debe salir a una maquina separada que se conecte a todos los clientes, esto no cubre el caso de que sucede si la máquina de esta base de datos cae. En este caso necesitamos un esquema igual donde hay más de una maquina corriendo bases de datos conectada a todos los clientes. Aquí ya cumpliríamos nuestro cometido de dar un esquema de arquitectura para asegurar disponibilidad porque en los niveles de cliente y datos tenemos redundancia y replicación, pero hay que considerar que para que esto pueda funcionar debemos crear una partición de datos también porque hay que asegurar que la información que este en una máquina de datos caída siga pudiendo ser accedida. En este caso las bases de datos tienen que estar unidas y como es mongo la base de datos el esquema por default es una maquina principal que tiene dos secundarias a las cuales puede recaer donde la maquina principal falle, en todas se guarda la misma información al costo de que no se tiene tres veces la capacidad en vez solo una.
-
-### 2.3.3 Diseño
-
-##### 2.3.4. Vistas de Arquitectura
-
-##### 2.3.5 Patrones de Arquitectura
-
-##### 2.3.6 Best Practices
+##### 2.4.4 Best Practices
 
 
  
