@@ -77,10 +77,12 @@ De hecho la valocidad de respuesta es de las caracteristicas mas buscadas entre 
 
 ##### 2.2.1.2 Patrones
 
+##### 2.1.1.2 Patrones
+* **Cache-Aside:** Cuando hay un query de algun dato revisar primero si esta en el cache, si no ir al data store y adquirirlo. Despues de devolver el dato, dejarolo en el cache.
+* **CQRS:** Separar los modelos de los que leen datos a los modelos que actualizan los datos.
+* **Priority Queue:** Designar prioridades a los request y atender los request con mayor prioridad primero.
 * **Lightweight Design:** Los componentes principales se convierten livianos minimizando el cantidad de viajes al servidor. La forma mas popular es usando Javascript asincrónico y XML basado en componentes de cliente como widgets con Javscript minimo.
-
 * **Computación distribuida y paralela:** Se basa en en diseñar software que puede ser corrido en varios nodos. Esto no solo ofrece ventajas en rendimiento si que tambien en esbalabilidad.
-
 * **On-Demand Data Loading:** Consiste principalmente en cargar los componentes solo cuando se requieren, esto hace que el tamaños de la paginacion sea mas pequeña.
 
 
