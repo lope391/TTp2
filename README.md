@@ -190,5 +190,36 @@ Siguiendo el escenario anterior en este momento se tendría una aplicación que 
 
 ##### 2.4.4 Best Practices
 
+# Documento 3 
 
+## 3.1 Diseño de Arquitectura de la Aplicación
+### 3.1.1 Vista de Desarrollo
+
+#### 3.1.1.1 Definición de Tecnología de Desarrollo
+  * Sistema Operativo: Linux Centos 7.1
+  * Lenguaje de Programación: Javascript
+  * Framework web Backend: Node.js 8.2.1 -- Express.js 4.15.2 
+  * Framework web Frontend: --
+  * Web App Server: Embebido
+  * Web Server: NGINX
+  * Base de Datos: MongoDB 3.4.6
+  * Editor: vim
+  
+#### 3.1.1.2 URL GIT
+ https://github.com/lope391/TTp2
  
+### 3.1.2 Vista de Desplieque
+
+#### 3.1.2.1 Definición de Tecnología
+  * Proxy Server: HAPROXY
+  * Base de datos: MongoDB replica set
+  * Sistema de Archivos Distribuidos: GlusterFS
+  * Sistema de Pruebas: Jmeter
+  
+#### 3.1.2.2 URL de Ejecución
+ 10.131.137.154
+## 3.2 Implementación y Pruebas por Atributo de Calidad
+### 3.2.1 Disponibilidad
+#### 3.2.1.1 Herramientas Utilizadas
+#### 3.2.1.2 Cambios en la implementación de la Aplicación
+### 3.2.2 Rendimiento
