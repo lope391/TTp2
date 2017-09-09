@@ -82,7 +82,7 @@ La capacidad de usuarios que el sistema puede soportar se corta a la mitad.
 
 ### 2.1.3 Diseño 
 #### 2.1.3.1 Vistas de Arquitectura
-
+  ![alt text](https://i.imgur.com/gDl1cwu.png "Architecture")
 #### 2.1.3.2 Patrones de Arquitectura
   * **Failover:** HAPROXY maneja las conexiónes entrantes a los servidores monitoreandolos. Si alguno cae regirige el trafico al otro.
   * **Redundancia:** Dos clientes web corren aplucaciones iguales.
