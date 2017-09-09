@@ -66,6 +66,43 @@ Mejorar la disponibilidad de basa en implementar las 5 Rs, **Reliability**, **Re
   * **Reporting:** Para poder manejar los distintos estados de la aplicación hay que primero poder reconocer los diferentes estados de los servicios. Es necesario implementar algún tipo de control de monitoreo por parte de cada servicio para interactuar con el que le sea necesario. No es viable dejar que un servidor intente conectarse a una base de datos caída debe haber una pregunta o un latido relacionado a esta conexión para asegurar funcionamiento. 
   * **Redundancy:** Como ya se habló previamente, la redundancia se basa en incrementar el número de nodos que prestan el mismo servicio para que en cualquier momento siempre haya al menos un nodo que este activo prestando este servicio. El diseño n+1 es el que demuestra este concepto donde siempre se agrega un nodo más para mejorar la disponibilidad de la aplicación.
 
+### 2.1.2 Análisis Mediante Escenarios
+##### Fuente de Estimulo
+Hay una baja de tensión y se reinicia el cliente.
+##### Estimulo
+El cliente de la aplicación se cae. 
+##### Artefacto
+Cliente de Aplicación.
+##### Ambiente
+Servidor.
+##### Respuesta
+Los usuarios que estaban usando ese servidor dejan de tener servicio y apenas recarguen la pagina serán redirigidos al otro servidor.
+##### Medida de Respuesta
+La capacidad de usuarios que el sistema puede soportar se corta a la mitad.
+
+### 2.1.3 Diseño 
+#### 2.1.3.1 Vistas de Arquitectura
+
+#### 2.1.3.2 Patrones de Arquitectura
+  * **Failover:** HAPROXY maneja las conexiónes entrantes a los servidores monitoreandolos. Si alguno cae regirige el trafico al otro.
+  * **Redundancia:** Dos clientes web corren aplucaciones iguales.
+  * **Replicación:** Bases de datos replicadas y file systems compartidos. 
+#### 2.1.3.3 Best Practices
+  * Failover
+  * Replication
+  * Redundancy
+ 
+#### 2.1.3.4 Tácticas
+  * Dividir la carga de Usuarios entre dos servidores .
+  * Replicar archivos para que puedan ser leidos de cualquier fuente.
+  * Replicar bases de datos para que los archivos se mantengan disponibles.
+#### 2.1.3.5 Herramientas
+  * Load Balancer HAPROXY
+  * 2 Clientes Redundantes
+  * MongoDB Replica Set
+  * Sistema de archivos por red con gluster
+  
+
 ### 2.2 Rendimiento
 
 ### 2.2.1 Marco de Referencia
