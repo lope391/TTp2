@@ -205,7 +205,7 @@ Siguiendo el escenario anterior en este momento se tendría una aplicación que 
  https://github.com/lope391/TTp2
  
 ### 3.1.2 Vista de Desplieque
-
+  ![alt text](https://i.imgur.com/F273v5Ng.png "Architecture")
 #### 3.1.2.1 Definición de Tecnología
   * Proxy Server: HAPROXY
   * Base de datos: MongoDB replica set
