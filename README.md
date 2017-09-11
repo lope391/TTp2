@@ -221,7 +221,8 @@ Siguiendo el escenario anterior en este momento se tendría una aplicación que 
 * **Reboot:**  Se reiniciaron diferenetes componentes del cluster para verificar que el sistema pudiera seguir funcionando en caso de un reinicio de servidor.
 #### 3.2.1.2 Cambios en la implementación de la Aplicación
 * **Load Balancer(HAPROXY):**  Se configuro Haproxy para balancear entre los dos diferentes tipos de servidores de servicio
-* **Distribucion(GlusterFS):** Se configuro y monto una imagen de GlusterFS para obtener 2 servidores de servicio y 2 servidores de archivos
+* **Distribucion(GlusterFS):** se utilizo para dar consistencia de los datos en el sistema, Distribuyendo los archivos en  alguna de las máquinas y sincronizando los datos.
+
 ### 3.2.2 Rendimiento
 #### Antes 
 **route:/campgrounds**
@@ -254,5 +255,6 @@ Siguiendo el escenario anterior en este momento se tendría una aplicación que 
 * **Apache Jmeter:** Se hicieron pruebas simples de GET en varios routes del servidor antes y después de los cambios de implementación. Se notó que los niveles de tolerancia de transacciones por minuto aumentaron de 300-500 a 1000-1,200. Incluso llegaron hasta alturas de 2,000 por minuto.
 
 #### 3.2.2.2 Cambios en la implementación de la Aplicación
+* **HAProxy:** implementar load balancer aumento la cantidad de máquinas que pueden distribuir procesos.
 * **Minimizar Assets:** Se minimizaron algunos scripts y los archivos de styles
-* **Cache:** Se configuro el archivo de nginx.conf para uqe implementara un cache que guardara los quieries mas pedidos.
+* **NGINX Cache:** Se configuro el archivo de nginx.conf para uqe implementara un cache que guardara los quieries mas pedidos.
