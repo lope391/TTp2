@@ -79,10 +79,7 @@ Servidor.
 Los usuarios que estaban usando ese servidor dejan de tener servicio y apenas recarguen la pagina serán redirigidos al otro servidor.
 ##### Medida de Respuesta
 La capacidad de usuarios que el sistema puede soportar se corta a la mitad.
-
-### 2.1.3 Diseño 
-#### 2.1.3.1 Vistas de Arquitectura
-  ![alt text](https://i.imgur.com/gDl1cwu.png "Architecture")
+  
 #### 2.1.3.2 Patrones de Arquitectura
   * **Failover:** HAPROXY maneja las conexiónes entrantes a los servidores monitoreandolos. Si alguno cae regirige el trafico al otro.
   * **Redundancia:** Dos clientes web corren aplucaciones iguales.
@@ -96,14 +93,11 @@ La capacidad de usuarios que el sistema puede soportar se corta a la mitad.
   * Dividir la carga de Usuarios entre dos servidores .
   * Replicar archivos para que puedan ser leidos de cualquier fuente.
   * Replicar bases de datos para que los archivos se mantengan disponibles.
-#### 2.1.3.5 Herramientas
-  * Load Balancer HAPROXY
-  * 2 Clientes Redundantes
-  * MongoDB Replica Set
-  * Sistema de archivos por red con gluster
+
+
   
 
-### 2.2 Rendimiento
+## 2.2 Rendimiento
 
 ### 2.2.1 Marco de Referencia
 
@@ -146,7 +140,7 @@ Existen dos principlaes tacticas para mejorar el rendimiento **Control de la Dem
   * Divicion de processadores: Ejecutar todos los procesos en un servidor puede crear cuellos de botella. Para mantener mejor estabilidad en tiempos de alta cantidad de request se recomiendad tener varios servidores para los processadores.
   * Multiple copias de datos: Tener caches para almacenar los datos con mayor frecuencia de requirimiento disminuyer los tiempos de respuesta considerablemente.
 
-### 2.3 Analisis
+## 2.3 Analisis
 
 El proyecto debe tener varios niveles para asegurar la disponibilidad, pero se mantendrá un diseño simplificado para no crear demasiada complejidad como para que no pueda ser manejada. La idea es implementar servicios adicionales de disponibilidad tanto para la capa de servidor como para la capa de datos.  
 
@@ -156,9 +150,14 @@ Cambiando de escenario, ahora pensemos que sucedería donde uno de estos cliente
 
 Siguiendo el escenario anterior en este momento se tendría una aplicación que en varios clientes soporta múltiples usuarios, pero al necesitar hacer alguna consulta a la base de datos, no sería posible que esta estuviera localizada dentro del cliente porque no se tendría una consistencia de datos así que hay que sacarla a su propia maquina a la cual se conectarán todos los clientes. Siguiendo el mismo patrón la base de datos debe salir a una maquina separada que se conecte a todos los clientes, esto no cubre el caso de que sucede si la máquina de esta base de datos cae. En este caso necesitamos un esquema igual donde hay más de una maquina corriendo bases de datos conectada a todos los clientes. Aquí ya cumpliríamos nuestro cometido de dar un esquema de arquitectura para asegurar disponibilidad porque en los niveles de cliente y datos tenemos redundancia y replicación, pero hay que considerar que para que esto pueda funcionar debemos crear una partición de datos también porque hay que asegurar que la información que este en una máquina de datos caída siga pudiendo ser accedida. En este caso las bases de datos tienen que estar unidas y como es mongo la base de datos el esquema por default es una maquina principal que tiene dos secundarias a las cuales puede recaer donde la maquina principal falle, en todas se guarda la misma información al costo de que no se tiene tres veces la capacidad en vez solo una.
 
-### 2.4 Diseño
+## 2.4 Diseño
 
 #### 2.4.1 Herramientas
+* Load Balancer HAPROXY
+* 2 Clientes Redundantes
+* MongoDB Replica Set
+* Sistema de archivos por red con gluster
+* JS/CSS minifier
 * Caches
 * Jmeter
 * PostMan
@@ -178,9 +177,7 @@ Siguiendo el escenario anterior en este momento se tendría una aplicación que 
 
 ##### 2.4.2 Vistas de Arquitectura
 
-<p align="center">
-  <img width="460" height="300" src="campgrounds.png">
-</p>
+![alt text](https://i.imgur.com/gDl1cwu.png "Architecture")
 
 
 ##### 2.4.3 Patrones de Arquitectura
