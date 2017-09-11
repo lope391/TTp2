@@ -225,7 +225,7 @@ Siguiendo el escenario anterior en este momento se tendría una aplicación que 
 ### 3.2.2 Rendimiento
 **Antes route:/campgrounds**
 <p align="center">
-  <img width="460" height="300" src="/jmeter_test/a-campgrounds.PNG">
+  <img width="460" height="300" src="jmeter_test/a-campgrounds.PNG">
 </p>
 #### 3.2.2.1 Herramientas Utilizadas
 * **Apache Jmeter:** 
