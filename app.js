@@ -34,7 +34,8 @@ passport.deserializeUser(User.deserializeUser());
 
 
 //connect to mongoDB localhost
-var url = process.env.DATABASEURL || 'mongodb://localhost/topicos_p2';
+//var url = process.env.DATABASEURL || 'mongodb://lopec:eafit.2017@ds155727.mlab.com:55727/topicosp1';
+var url = process.env.DATABASEURL || 'mongodb://server1:27017,server2:27017,client2:27017/topicos_p2?replicaSet=shared';
 mongoose.connect(url, {useMongoClient: true});
 //mongodb://lopec:eafit.2017@ds155727.mlab.com:55727/topicosp1 DB mLAB
 //mongodb://localhost/topicos_p1 DB Local
@@ -49,7 +50,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join('/mnt/glusterfs/public')));
 
 
 //routes to use

@@ -12,7 +12,7 @@ var Image = require('../models/image');
 
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, 'public/uploads/')
+        cb(null, '/mnt/glusterfs/public/uploads/')
     },
     filename: function(req, file, cb) {
         cb(null, file.originalname);
