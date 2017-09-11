@@ -227,19 +227,6 @@ Siguiendo el escenario anterior en este momento se tendría una aplicación que 
 **route:/campgrounds**
 
 <p align="center">
-  <img width="100%" height="auto" src="jmeter_test/a-campgrounds.PNG">
-</p
-
-**route:/campgrounds/postId**
-
-<p align="center">
-  <img width="100%" height="auto" src="jmeter_test/a-campgrounds-id.PNG">
-</
-
-#### Despues 
-**route:/campgrounds**
-
-<p align="center">
   <img width="100%" height="auto" src="jmeter_test/b-campgrounds.PNG">
 </p
 
@@ -247,6 +234,19 @@ Siguiendo el escenario anterior en este momento se tendría una aplicación que 
 
 <p align="center">
   <img width="100%" height="auto" src="jmeter_test/b-campgrounds-id.PNG">
+</
+
+#### Despues 
+**route:/campgrounds**
+
+<p align="center">
+  <img width="100%" height="auto" src="jmeter_test/a-campgrounds.PNG">
+</p
+
+**route:/campgrounds/postId**
+
+<p align="center">
+  <img width="100%" height="auto" src="jmeter_test/a-campgrounds-id.PNG">
 </p
 
 #### 3.2.2.1 Herramientas Utilizadas
