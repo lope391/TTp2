@@ -228,27 +228,31 @@ Siguiendo el escenario anterior en este momento se tendría una aplicación que 
 
 <p align="center">
   <img width="100%" height="auto" src="jmeter_test/b-campgrounds.PNG">
-</p
+</p>
 
 **route:/campgrounds/postId**
 
 <p align="center">
   <img width="100%" height="auto" src="jmeter_test/b-campgrounds-id.PNG">
-</
+</p>
 
 #### Despues 
+
 **route:/campgrounds**
 
 <p align="center">
   <img width="100%" height="auto" src="jmeter_test/a-campgrounds.PNG">
-</p
+</p>
 
 **route:/campgrounds/postId**
 
 <p align="center">
   <img width="100%" height="auto" src="jmeter_test/a-campgrounds-id.PNG">
-</p
+</p>
 
 #### 3.2.2.1 Herramientas Utilizadas
-* **Apache Jmeter:** 
+* **Apache Jmeter:** Se hicieron pruebas simples de GET en varios routes del servidor antes y después de los cambios de implementación. Se notó que los niveles de tolerancia de transacciones por minuto aumentaron de 300-500 a 1000-1,200. Incluso llegaron hasta alturas de 2,000 por minuto.
+
 #### 3.2.2.2 Cambios en la implementación de la Aplicación
+* **Minimizar Assets:** Se minimizaron algunos scripts y los archivos de styles
+* **Cache:** Se configuro el archivo de nginx.conf para uqe implementara un cache que guardara los quieries mas pedidos.
