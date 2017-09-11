@@ -84,10 +84,6 @@ La capacidad de usuarios que el sistema puede soportar se corta a la mitad.
   * **Failover:** HAPROXY maneja las conexiónes entrantes a los servidores monitoreandolos. Si alguno cae regirige el trafico al otro.
   * **Redundancia:** Dos clientes web corren aplucaciones iguales.
   * **Replicación:** Bases de datos replicadas y file systems compartidos. 
-#### 2.1.3.3 Best Practices
-  * Failover
-  * Replication
-  * Redundancy
  
 #### 2.1.3.4 Tácticas
   * Dividir la carga de Usuarios entre dos servidores .
@@ -186,6 +182,9 @@ Siguiendo el escenario anterior en este momento se tendría una aplicación que 
 * Arquitecture Orientada a Servicios (SOA)
 
 ##### 2.4.4 Best Practices
+  * Failover
+  * Replication
+  * Redundancy
 
 # Documento 3 
 
