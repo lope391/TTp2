@@ -217,5 +217,16 @@ Siguiendo el escenario anterior en este momento se tendría una aplicación que 
 ## 3.2 Implementación y Pruebas por Atributo de Calidad
 ### 3.2.1 Disponibilidad
 #### 3.2.1.1 Herramientas Utilizadas
+* **Ping:** Se utilizo el commando de consola ping para comprabar disponibilidad. 
+* **Reboot:**  Se reiniciaron diferenetes componentes del cluster para verificar que el sistema pudiera seguir funcionando en caso de un reinicio de servidor.
 #### 3.2.1.2 Cambios en la implementación de la Aplicación
+* **Load Balancer(HAPROXY):**  Se configuro Haproxy para balancear entre los dos diferentes tipos de servidores de servicio
+* **Distribucion(GlusterFS):** Se configuro y monto una imagen de GlusterFS para obtener 2 servidores de servicio y 2 servidores de archivos
 ### 3.2.2 Rendimiento
+**Antes route:/campgrounds**
+<p align="center">
+  <img width="460" height="300" src="jmeter_test/a-campgrounds.png">
+</p>
+#### 3.2.2.1 Herramientas Utilizadas
+* **Apache Jmeter:** 
+#### 3.2.2.2 Cambios en la implementación de la Aplicación
