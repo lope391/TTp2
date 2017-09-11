@@ -223,10 +223,16 @@ Siguiendo el escenario anterior en este momento se tendría una aplicación que 
 * **Load Balancer(HAPROXY):**  Se configuro Haproxy para balancear entre los dos diferentes tipos de servidores de servicio
 * **Distribucion(GlusterFS):** Se configuro y monto una imagen de GlusterFS para obtener 2 servidores de servicio y 2 servidores de archivos
 ### 3.2.2 Rendimiento
-**Antes route:/campgrounds**
+#####Antes 
+**route:/campgrounds**
 <p align="center">
-  <img width="460" height="300" src="jmeter_test/a-campgrounds.PNG">
-</p>
+  <img width="100%" height="auto" src="jmeter_test/a-campgrounds.PNG">
+</p
+**route:/campgrounds/post**
+<p align="center">
+  <img width="100%" height="auto" src="jmeter_test/a-campgrounds-id.PNG">
+</p
+
 #### 3.2.2.1 Herramientas Utilizadas
 * **Apache Jmeter:** 
 #### 3.2.2.2 Cambios en la implementación de la Aplicación
