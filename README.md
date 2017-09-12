@@ -296,3 +296,90 @@ Editrar el archivo de configuracion
 ````
 vi haproxy.cfg
 ````
+
+#### Replicación MongoDB
+**paso 1 - Preparar los servidores**
+
+editas el archivo host de cada servidor nodo
+
+````
+vim /etc/hosts
+````
+
+configurar los archivos 
+```
+10.131.137.XXX  mongo1
+10.131.137.XXX  mongo2
+```
+Despues desabilitar SELinux
+
+````
+vim /etc/sysconfig/selinux
+
+SELINUX=disabled
+````
+Guardar y reiniciar
+````
+reboot
+````
+**paso 2 - instalar MongoDB en todos los nodos**
+
+````
+sudo yum -y install mongodb-org
+````
+**paso 3 - configurar el firewall**
+
+Instalar Firewalld
+````
+yum -y install firewalld
+````
+Iniciar firewalld y configurar para que comienze con el boot
+````
+systemctl start firewalld
+systemctl enable firewalld
+````
+
+abrir los puerto 
+````
+firewall-cmd --permanent --add-port=22/tcp
+firewall-cmd --permanent --add-port=27017/tcp
+````
+
+**paso 4 - configurar el set de replica MongoDB**
+
+Editar el archivo de configuracion de MongoDB
+
+````
+vim /etc/mongod.conf
+````
+
+En la seccion net agregar:
+````
+net:
+  port: 27017
+  # bindIP: 127.0.0.1
+````
+Despues cambier la section replication a 'myreplica01'
+
+````
+replication:
+  replSetName: "myreplica01"
+````
+
+reiniciar mongoDB en todos los nodos
+````
+systemctl restart mongod
+````
+
+**paso 5 - iniciar el replica set MongoDB**
+
+iniciar en el nodo primario y instanciar la replica set
+````
+rs.initiate()
+````
+
+Agregar el nodo 'mongo2' al replica sets
+
+````
+rs.add("mongo2")
+````
