@@ -258,3 +258,26 @@ Siguiendo el escenario anterior en este momento se tendría una aplicación que 
 * **HAProxy:** implementar load balancer aumento la cantidad de máquinas que pueden distribuir procesos.
 * **Minimizar Assets:** Se minimizaron algunos scripts y los archivos de styles
 * **NGINX Cache:** Se configuro el archivo de nginx.conf para uqe implementara un cache que guardara los quieries mas pedidos.
+
+### 3.3 Pasos requeridos
+
+#### Load Balancer (HAProxy)
+
+**paso 1 - configurar los archivos /etc/hosts **
+
+cargar el servidor load balancer y editar el archivo /etc/hosts.
+```
+ssh loadbalancer@10.131.137.XXX
+sudo su
+```
+
+```
+vim /etc/hosts
+```
+
+Editar y agregar una linea nueva para el load balancer en lor archivos host:
+```
+vim /etc/hosts
+```
+Agregar el nombre del host del loadbalance en servidor nginx:
+10.131.137.XXX    loadbalancer
