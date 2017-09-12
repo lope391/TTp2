@@ -263,7 +263,7 @@ Siguiendo el escenario anterior en este momento se tendría una aplicación que 
 
 #### Load Balancer (HAProxy)
 
-**paso 1 - configurar los archivos /etc/hosts **
+**paso 1 - configurar los archivos /etc/hosts**
 
 cargar el servidor load balancer y editar el archivo /etc/hosts.
 ```
@@ -280,4 +280,19 @@ Editar y agregar una linea nueva para el load balancer en lor archivos host:
 vim /etc/hosts
 ```
 Agregar el nombre del host del loadbalance en servidor nginx:
+
+````
 10.131.137.XXX    loadbalancer
+````
+**paso 2 - Instalar y configurar HAProxy**
+
+````
+yum -y update
+yum -y install haproxy
+````
+
+Editrar el archivo de configuracion 
+
+````
+vi haproxy.cfg
+````
