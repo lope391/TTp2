@@ -383,3 +383,89 @@ Agregar el nodo 'mongo2' al replica sets
 ````
 rs.add("mongo2")
 ````
+
+#### GlusterFS
+
+**paso 1**
+
+Editar el archivo host en todos las maquinas para que quede con
+
+````
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+10.131.137.XXX   server1.example.com     server1
+10.131.137.XXX   server2.example.com     server2
+10.131.137.XXX   client1.example.com     client1
+10.131.137.XXX   server2.example.com     client2
+
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+````
+**paso 2 - habilitar los otros repositorios**
+
+Importamos las llaves GPG para los pacquetes de software
+````
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY*
+````
+Habilitamos el repositorio EPEL 7
+
+````
+yum -y install epel-release
+yum -y install yum-priorities
+````
+editar /etc/yum.repos.d/epel.repo y agregar lo siguiente
+
+````
+[epel]
+name=Extra Packages for Enterprise Linux 7 - $basearch
+#baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch
+mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=$basearch
+failovermethod=priority
+enabled=1
+priority=10
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+[...]
+````
+
+**paso 3 - Configurando los servidores GlusterFS**
+
+instalar el repositorio de CentOS storage
+````
+yum -y install centos-release-gluster
+````
+instalar los servidores GlusterFS
+
+````
+yum -y install glusterfs-server
+````
+
+Crear los sytem startups links para el Gluster daemon
+````
+systemctl enable glusterd.service
+systemctl start glusterd.service
+````
+Ahora creamos  el volumen compartido 
+````
+gluster volume create testvol replica 2 transport tcp server1.example.com:/data server2.example.com:/data force
+````
+iniciamos el volumen
+
+````
+gluster volume start testvol
+````
+**paso 4 - Hablitando el cliente GlusterFS**
+
+En el cliente1 instalamos el cliente 
+
+````
+yum -y install glusterfs-client
+````
+
+creamos el directorio 
+````
+mkdir /mnt/glusterfs
+````
+montamos el sistemas de archivos de GlusterFS con
+
+````
+mount.glusterfs server1.example.com:/testvol /mnt/glusterfs
+````
