@@ -469,3 +469,20 @@ montamos el sistemas de archivos de GlusterFS con
 ````
 mount.glusterfs server1.example.com:/testvol /mnt/glusterfs
 ````
+
+#### NGINX Cache
+
+modificar los archivos de configuracion nginx de cada cliente para que contengan lo siguiente
+
+````
+proxy_cache_path /path/to/cache levels=1:2 keys_zone=my_cache:10m max_size=10g
+                 inactive=60m use_temp_path=off;
+
+server {
+    # ...
+    location / {
+        proxy_cache my_cache;
+        proxy_pass http://my_upstream;
+    }
+}
+````
